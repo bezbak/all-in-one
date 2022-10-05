@@ -1,0 +1,27 @@
+.inner{
+    display: flex;
+    margin-bottom: 50px;
+}
+.inner2{
+    width: 800px;
+    margin-bottom: 15px;
+}
+.text-muted small{
+    margin: 15px 0;
+}
+p{
+    margin: 0;
+}
+.mw50{
+    max-width: 600px;
+}
+.DF{
+    display: flex;
+    margin: 5px 0;
+}
+.account_info,.info_photo{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
