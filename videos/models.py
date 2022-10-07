@@ -1,5 +1,4 @@
 
-from tabnanny import verbose
 from django.db import models
 from users.models import User
 # Create your models here.
@@ -11,7 +10,7 @@ class Video(models.Model):
     views = models.BigIntegerField(default = 0, editable=False)
     likes = models.BigIntegerField(default = 0,editable=False)
     date = models.DateTimeField(auto_now_add = True, editable=False)
-    chanel = models.ForeignKey(User,on_delete=models.CASCADE, related_name="chanel")
+    user = models.ManyToManyField(User, related_name="user_videos", blank = True, null = True)
     
     def __str__(self):
         return self.title

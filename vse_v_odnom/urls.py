@@ -19,7 +19,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 from setting.views import index
 from videos.views import single_video
-from users.views import register,login
+from users.views import register,login, profile
 from django.contrib.auth.views import LogoutView
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -27,6 +27,8 @@ urlpatterns = [
     path('video/<int:id>', single_video, name="video"),
     path('register/', register, name="register"),
     path('login/', login,name="login"),
-    path('logout/', LogoutView.as_view(next_page = 'index'),  name = "logout"),
+    path('logout/', LogoutView.as_view(next_page = 'index'),  name = "logout"), 
+    path('profile/<str:username>', profile, name = 'gondon')
+    
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root =settings.MEDIA_ROOT)
