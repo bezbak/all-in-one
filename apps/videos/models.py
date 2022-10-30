@@ -1,6 +1,5 @@
-
 from django.db import models
-from users.models import User
+from apps.users.models import User
 # Create your models here.
 class Video(models.Model):
     title = models.CharField(max_length = 50)
@@ -10,7 +9,7 @@ class Video(models.Model):
     views = models.BigIntegerField(default = 0, editable=False)
     likes = models.BigIntegerField(default = 0,editable=False)
     date = models.DateTimeField(auto_now_add = True, editable=False)
-    user = models.ManyToManyField(User, related_name="user_videos", blank = True, null = True)
+    user = models.ForeignKey(User, related_name="user_videos", on_delete = models.PROTECT)
     
     def __str__(self):
         return self.title

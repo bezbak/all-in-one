@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from .models import Setting
-from videos.models import Video
+from apps.videos.models import Video
 # Create your views here.
 def index(request,):
     setting = Setting.objects.latest('id')

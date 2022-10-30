@@ -25,3 +25,10 @@ p{
     align-items: center;
     margin-bottom: 12px;
 }
+a{
+    text-decoration: none;
+    color: #fff;
+}
+a:hover{
+    color: #fff;
+}

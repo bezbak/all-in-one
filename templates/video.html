@@ -19,9 +19,9 @@
             <source src="{{video.video.url}}" type="video/mp4"></source>
             </video>
             <h5 class="card-title">{{video.title}}</h5>
-                <div style="display:flex; justify-content:space-between; max-width:300px;"><a href="" style="text-decoration: none; color:black;"><p class=""><img src="{{video.chanel.profile_image.url}}" style="width: 30px; height: 30px;" alt=""> {{video.chanel}}</p></a>
+                <div style="display:flex; justify-content:space-between; max-width:300px;"><a href="{%url 'profile' video.user.username %}" style="text-decoration: none; color:black;"><p class=""><img src="{{video.user.profile_image.url}}" style="width: 30px; height: 30px;" alt=""> {{video.user.username}}</p></a>
                    
-                <button type="button" class="btn btn-danger">Подписаться</button></div
+                <button type="button" class="btn btn-danger">Подписаться</button></div>
                 <p class="text-muted">
                     <p>{{video.description| truncatewords:40}}</p>
                     <small class="text-muted">{{video.views}} просмотров</small>
