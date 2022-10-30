@@ -10,6 +10,7 @@
     margin: 15px 0;
 }
 p{
+    color: black;
     margin: 0;
 }
 .mw50{
@@ -27,8 +28,8 @@ p{
 }
 a{
     text-decoration: none;
-    color: #fff;
+    color: inherit;
 }
 a:hover{
-    color: #fff;
+    color: blue;
 }

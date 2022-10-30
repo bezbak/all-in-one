@@ -55,6 +55,7 @@ def profile(request, username):
         try:
             user = FollowUser.objects.get(from_user = request.user, to_user=user)
             user.delete()
+            user = User.objects.get(username=username)
             user = User.objects.get(username = user.username)
             return redirect('profile', user.username)
         except:
