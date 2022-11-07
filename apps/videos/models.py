@@ -33,3 +33,4 @@ class VideoComment(models.Model):
     text = models.CharField(max_length= 500)
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="user_comment")
     video = models.ForeignKey(Video, on_delete=models.CASCADE, related_name="video_comment")
+    created = models.DateTimeField(auto_now_add = True)

@@ -7,7 +7,9 @@ from apps.users.models import FollowUser, User
 def single_video(request,id):
     video = Video.objects.get(id = id)
     setting = Setting.objects.latest('id')
+    recomendations = Video.objects.all().order_by('?')
     follow_status = FollowUser.objects.filter(from_user=request.user, to_user=video.user).exists()
+    comments = VideoComment.objects.filter(video = video)
     if request.method == 'POST':
         try:
             if 'delete' in request.POST:
@@ -46,7 +48,9 @@ def single_video(request,id):
     context = {
         'setting': setting,
         'video':video,
-        'follow_status': follow_status
+        'follow_status': follow_status,
+        'comments': comments,
+        'recomendations':recomendations
     }
     return render(request, "video.html", context)
 

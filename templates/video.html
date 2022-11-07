@@ -1,12 +1,13 @@
 {% extends 'homepage.html' %}
 {% block content %}
+{% load static %}
 {% include  'include/header.html' %}
 
     <div class="container" style="margin-top: 15px;">
         <div class="inner">
 
             <div class="inner2">
-        <video name='demo' controls autoplay width='95%' height='70%' style="width: 95%; height:400px;">
+        <video name='demo' controls autoplay controlsList="nodownload"  width='95%' height='70%' style="width: 95%; height:400px;">
             <source src="{{video.video.url}}" type="video/mp4"></source>
             </video>
             <h5 class="card-title">{{video.title}}</h5>
@@ -47,35 +48,27 @@
             </div>
             <div class="">
                 <ul class="list-group">
-                    <li class="list-group-item " aria-current="true"> <a href="" style="text-decoration: none; color:black; display:flex;"><img src="" style="width: 100px; height: 100px     ;" alt="">
+                  {%for rd_video in recomendations%}
+                    <li class="list-group-item " aria-current="true">
+                       <a href="{%url 'video' rd_video.id%}" style="text-decoration: none; color:black; display:flex;">
+                        <img src="{{rd_video.photo.url}}" style="width: 100px; height: 100px;" alt="">
                         <div class="">
-                        <h5 class="card-title">Робот который прыгает выше всех</h5>
-                        <p class=""><small class="text-muted">account</small>
-                        </p><p class=""><small class="text-muted">3.3 млн просмотров</small>
-                    </p>
-                </div></a></li>
-                <li class="list-group-item " aria-current="true"> <a href="" style="text-decoration: none; color:black; display:flex;"><img src="" style="width: 100px; height: 100px     ;" alt="">
-                    <div class="">
-                    <h5 class="card-title">Робот который прыгает выше всех</h5>
-                    <p class=""><small class="text-muted">account</small>
-                    </p><p class=""><small class="text-muted">3.3 млн просмотров</small>
-                </p>
-            </div></a></li>
-            <li class="list-group-item " aria-current="true"> <a href="" style="text-decoration: none; color:black; display:flex;"><img src="" style="width: 100px; height: 100px     ;" alt="">
-                <div class="">
-                <h5 class="card-title">Робот который прыгает выше всех</h5>
-                <p class=""><small class="text-muted">account</small>
-                </p><p class=""><small class="text-muted">3.3 млн просмотров</small>
-            </p>
-            
-        </div></a></li>
-                  </ul>
+                          <h5 class="card-title">{{rd_video.title}}</h5>
+                          <p class=""><small class="text-muted">{{rd_video.user.username}}</small></p>
+                      </div>
+                    </a>
+                </li>
+                {%endfor%}
+                </ul>
             </div>
         </div>
         <div class="col-sm-7">
+          <form method="POST">
+            {%csrf_token%}
             <label  class="form-label">Оставить коментарий</label>
             <textarea type="text" class="form-control" name = 'text'placeholder="Введите текст комментария" value="" style="resize: none; margin-bottom:5px;" required=""></textarea>
             <button type="submit" name='comment' class="btn btn-primary">Отправить коментарий</button>
+          </form>
           </div>
         <div class="album py-5 ">
             <div class="container">
@@ -83,19 +76,21 @@
               <div class="row row-cols-1 row-cols-sm-1 row-cols-md-1 g-1">
                 <div class="col mw50" >
                   <div class="card shadow-sm">
-                    
-        
-                    <div class="card-body">
-                        <div class="DF">
-                            <div class=""><img src="" alt="" style="width: 45px; height:45px;">
-                        
-                        <p class="card-text">account
-                        </p></div>
-                      <p class="card-text"><small class="text-muted">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</small></p></div>
-                      <div class="d-flex justify-content-between align-items-center">
-                        <small class="text-muted">9 mins</small>
+                    {%for comment in comments%}
+                      <div class="card-body">
+                          <div class="DF">
+                              <div class=""><img src="{{comment.user.profile_image.url}}" alt="" style="width: 80px; height:80px; margin:0 15px 15px 0 ;">
+                                <p class="card-text">{{comment.user.username}} </p>
+                              </div>
+                              <p class="card-text">
+                                <small class="text-muted">{{comment.text}}</small>
+                              </p>
+                            </div>
+                        <div class="d-flex justify-content-between align-items-center">
+                          <small class="text-muted">{{comment.created}}</small>
+                        </div>
                       </div>
-                    </div>
+                      {%endfor%}
                   </div>
                 </div>
               </div>
